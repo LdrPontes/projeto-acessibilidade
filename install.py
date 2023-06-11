@@ -1,35 +1,13 @@
 import os
 import shutil
 import subprocess
-import requests
 import json
-import gdown
 
 print("iniciado processo")
 
 # Obter o nome do usuário a partir das variáveis de ambiente
 username = os.getenv("USERNAME")
 print("usuario : " + username)
-# URL do primeiro arquivo para download
-url1 = "https://github.com/kaishuu0123/erd-go/releases/latest/download/windows_amd64_erd-go.exe"
-
-urlDrive = 'https://drive.google.com/uc?id=1U9FqQAhuYlEv6YeO33yvhQFeyThNUdCI'
-
-# URL do segundo arquivo para download
-url2 = "https://github.com/kaishuu0123/graphviz-dot.js/releases/latest/download/graphviz-dot-win-x64.exe"
-
-# Caminho onde os arquivos serão salvos
-path = fr"C:\Users\{username}\Tools"
-print("caminho : " + path)
-# Verificar se o diretório de destino existe, se não, criá-lo
-if not os.path.exists(path):
-    os.makedirs(path,exist_ok=True)
-
-# Função para fazer o download do arquivo
-def download_file(url, file_path):
-    response = requests.get(url)
-    with open(file_path, "wb") as file:
-        file.write(response.content)
 
 def dowload_stack(nameFile):
     try:
@@ -38,7 +16,7 @@ def dowload_stack(nameFile):
     except subprocess.CalledProcessError:
     # 'stack' não está instalado, realizar a instalação
         try:
-            subprocess.run(["'copy stack.exe C:\\Users\\{username}\\AppData\\Roaming\\local\\bin'"], shell=True, check=True)
+            subprocess.run(["copy", "stack.exe", "C:\\Users\\{username}\\AppData\\Roaming\\local\\bin"], shell=True, check=True)
             subprocess.run(["stack.exe"], shell=True, check=True)
         except:
             print("Tentando instalar o stack")
