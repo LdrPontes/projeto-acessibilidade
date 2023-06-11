@@ -11,50 +11,45 @@ print("usuario : " + username)
 
 def dowload_stack(nameFile):
     try:
-        subprocess.run('stack --version', shell=True, check=True)
-        print("'stack' já está instalado.")
-    except subprocess.CalledProcessError:
-    # 'stack' não está instalado, realizar a instalação
-        try:
-            subprocess.run(["copy", "stack.exe", "C:\\Users\\{username}\\AppData\\Roaming\\local\\bin"], shell=True, check=True)
-            subprocess.run(["stack.exe"], shell=True, check=True)
-        except:
-            print("Tentando instalar o stack")
-        print("'stack' foi instalado com sucesso.") 
-    print("Clonando o repositório Git..." + nameFile)
-    if not os.path.exists("erd"):
-        subprocess.run('git clone https://github.com/BurntSushi/erd.git', shell=True, check=True)
-    # Entrar no diretório clonado
-    print("Entrando no diretório clonado...")
-    subprocess.run('cd erd', shell=True)
-    # Executar o comando 'stack install' no diretório clonado
-    print("Executando 'stack install'...")
-    try:
-        subprocess.run(['C:\\Users\\{username}\\AppData\\Roaming\\local\\bin\\stack.exe', 'install','--compiler=ghc-8.8.4','--resolver=lts-16.8'], shell=True, check=True)
+        os.makedirs("C:\\Users\\" + username + "\\AppData\\Roaming\\local\\bin")
+        subprocess.run(["copy", "stack.exe", "C:\\Users\\" + username + "\\AppData\\Roaming\\local\\bin"], shell=True, check=True)
+        print("stack foi instalado com sucesso.") 
     except:
-        subprocess.run(['stack', 'install','--compiler=ghc-8.8.4','--resolver=lts-16.8'], shell=True, check=True)
-    print("stack install concluído com sucesso.")
+        print("Erro ao instalar o stack")
+
+    
+    if not os.path.exists("erd"):
+        print("Clonando o repositório Git...")
+        subprocess.run('git clone https://github.com/BurntSushi/erd.git', shell=True, check=True)
+    # Executar o comando 'stack install' no diretório clonado
+    print("Executando stack install do projeto erd")
+    try:
+       subprocess.run(["C:\\Users\\" + username + "\\AppData\\Roaming\\local\\bin\\stack.exe", 'install','--compiler=ghc-8.8.4','--resolver=lts-16.8'], shell=True, check=True, cwd="erd/")
+    except:
+        print("stack install concluído com sucesso.")
 
 # Fazer o download do primeiro arquivo
-file1_path = os.path.join("C:\\Users\\{username}\\AppData\\Roaming\\local\\bin", "erd.exe")
+file1_path = os.path.join("C:\\Users\\" + username + "\\AppData\\Roaming\\local\\bin", "erd.exe")
 try:
     if not os.path.exists(file1_path):
         dowload_stack(file1_path)
-        print(" dowload primeiro arquivo erd-go")
+        print("Realização da instalação do erg-go finalizada com sucesso")
     # Executar o primeiro arquivo
     try:
         comando = f'Add-MpPreference -ExclusionPath "{file1_path}"'
         subprocess.run(['powershell', comando])
     except:
-        print("Não foi possivel adicionar o er nos arquivos liberados do windows defender")
+        print("Não foi possivel adicionar o er.exe nos arquivos liberados do windows defender")
 except:
     print("Não foi possivel baixar o erd")
 # Fazer o download do segundo arquivo
 file2_path = os.path.join("C:\\Program Files\\Graphviz\\bin", "dot.exe")
 if not os.path.exists(file2_path):
-    subprocess.run(['winget', 'install','-e', '--id' ,'Graphviz.Graphviz'],shell=True, check = True)
-    print("Download do segundo arquivo graphviz")
-print("Chamando execução do instalador do graphviz")
+    try:
+        subprocess.run(['winget', 'install','-e', '--id' ,'Graphviz.Graphviz'],shell=True, check = True)
+        print("Instalação do graphviz realizada com sucesso")
+    except: 
+        print("Erro ao realizar a instalação do graphviz")
 # Atualizar o arquivo settings.json
 settings_file = os.path.expandvars(r"%APPDATA%\Code\User\settings.json")
 
@@ -94,7 +89,8 @@ if vscode_path is None:
 
 # Nome da extensão a ser instalada
 extension_name = 'kaishuu0123.vscode-erd-preview'
-
+extension_highlighting = 'mikkel-ol.er-syntax-highlighting'
 # Executar o comando 'code --install-extension' com o caminho para o executável do VSCode
 subprocess.call([vscode_path, '--install-extension', extension_name])
+subprocess.call([vscode_path, '--install-extension', extension_highlighting])
 
