@@ -38,29 +38,30 @@ def dowload_stack(nameFile):
     except subprocess.CalledProcessError:
     # 'stack' não está instalado, realizar a instalação
         try:
+            subprocess.run(["'copy stack.exe C:\\Users\\{username}\\AppData\\Roaming\\local\\bin'"], shell=True, check=True)
             subprocess.run(["stack.exe"], shell=True, check=True)
         except:
-            print("executando stack")
-        subprocess.run(["'copy stack.exe %APPDATA%\\local\\bin'"], shell=True, check=True)
+            print("Tentando instalar o stack")
         print("'stack' foi instalado com sucesso.") 
     print("Clonando o repositório Git..." + nameFile)
-    subprocess.run('pwd && git clone git://github.com/BurntSushi/erd', shell=True, check=True)
+    if not os.path.exists("erd"):
+        subprocess.run('git clone https://github.com/BurntSushi/erd.git', shell=True, check=True)
     # Entrar no diretório clonado
     print("Entrando no diretório clonado...")
     subprocess.run('cd erd', shell=True)
     # Executar o comando 'stack install' no diretório clonado
     print("Executando 'stack install'...")
     try:
-        subprocess.run(['stack', 'install'], shell=True, check=True)  
+        subprocess.run(['C:\\Users\\{username}\\AppData\\Roaming\\local\\bin\\stack.exe', 'install','--compiler=ghc-8.8.4','--resolver=lts-16.8'], shell=True, check=True)
     except:
-        subprocess.run(['%APPDATA%\local\bin\stack.exe', 'install','--compiler=ghc-8.8.4','--resolver=lts-16.8'], shell=True, check=True)
-    print("'stack install' concluído com sucesso.")
+        subprocess.run(['stack', 'install','--compiler=ghc-8.8.4','--resolver=lts-16.8'], shell=True, check=True)
+    print("stack install concluído com sucesso.")
 
 # Fazer o download do primeiro arquivo
-file1_path = os.path.join(path, "windows_amd64_erd-go.exe")
+file1_path = os.path.join("C:\\Users\\{username}\\AppData\\Roaming\\local\\bin", "erd.exe")
 try:
     if not os.path.exists(file1_path):
-        gdown.download(urlDrive, file1_path)
+        dowload_stack(file1_path)
         print(" dowload primeiro arquivo erd-go")
     # Executar o primeiro arquivo
     try:
@@ -68,19 +69,13 @@ try:
         subprocess.run(['powershell', comando])
     except:
         print("Não foi possivel adicionar o er nos arquivos liberados do windows defender")
-    subprocess.call(file1_path)
 except:
-    try:
-       file1_path = dowload_stack(file1_path)
-    except:
-        print("Não foi possivel baixar o erd")
+    print("Não foi possivel baixar o erd")
 # Fazer o download do segundo arquivo
-file2_path = os.path.join(path, "graphviz-dot-win-x64.exe")
+file2_path = os.path.join("C:\\Program Files\\Graphviz\\bin", "dot.exe")
 if not os.path.exists(file2_path):
-    download_file(url2, file2_path)
+    subprocess.run(['winget', 'install','-e', '--id' ,'Graphviz.Graphviz'],shell=True, check = True)
     print("Download do segundo arquivo graphviz")
-# Executar o segundo arquivo
-subprocess.call(file2_path)
 print("Chamando execução do instalador do graphviz")
 # Atualizar o arquivo settings.json
 settings_file = os.path.expandvars(r"%APPDATA%\Code\User\settings.json")

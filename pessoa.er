@@ -1,5 +1,3 @@
-[Person] {bgcolor: "person"}
-*name
+[Person]
 height
 weight
-+birth_location_id
