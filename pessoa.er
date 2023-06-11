@@ -1,0 +1,5 @@
+[Person] {bgcolor: "person"}
+*name
+height
+weight
++birth_location_id
