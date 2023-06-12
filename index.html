@@ -1,25 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tutorial diagrama ER</title>
 </head>
 
 <body>
     <nav>
-        <ul>
+        <h1>
+            Sumário
+        </h1>
+        <ol>
             <li><a href="#install">Instalação</a></li>
-            <li><a href="#instruction">Instruções de Uso</a></li>
-        </ul>
+            <li><a href="#instruction">Instruções de uso</a></li>
+            <li>
+                <a href="#model">Como modelar um diagrama ER</a>
+                <ol>
+                    <li><a href="#entities">Entidades</a></li>
+                    <li><a href="#attributes">Atributos</a></li>
+                    <li><a href="#relationship">Relacionamento de Entidades</a></li>
+                </ol>
+             
+            </li>
+        </ol>
     </nav>
 
     <h1 id="install">Instalação</h1>
-    Para realizar a instalação
-    <h1 id="instruction">Instruções de Uso</h1>
-
+        <ol>
+            <li><a href="https://drive.google.com/drive/folders/1QDzh8DZXnylRxO5oei9fotDIdXsu9hSY?usp=sharing">Download do instalador</a></li>
+            <li>Execute o arquivo instalador.exe</li>
+            <li>Aguarde a instalação. O Windows pode solicitar uma confirmação para a instalação.</li>
+        </ol>
+    <h1 id="instruction">Instruções de uso</h1>
+    <ol>
+        <li>No VSCode, criar um arquivo com a extensão .er</li>
+        <li>Para abrir a visualização, pressione F1 para abrir a pesquisa do VSCode e busque por "ERD: Preview Current Window"</li>
+    </ol>
+    <h1 id="model">Como modelar um diagrama ER</h1>
+    <h2 id="entities">Entidades</h2>
+    As entidades são declaradas dentro de colchetes []. Por exemplo, é assim que declara a entidade Pessoa sem atributos:
+    <br>
+    <pre>
+        [Pessoa]
+    </pre>
+    <br>
+    <br>
+    Nomes e atributos de entidades podem conter espaços se citados com acentos graves, aspas simples ou duplas:
+    <br>
+    <pre>
+        [`Pessoa Física`]
+        ['Pessoa Física']
+        ["Pessoa Física"]
+    </pre>
+    <h2 id="attributes">Atributos</h2>
+    Um atributo pode ser declarado logo abaixo da entidade a que pertence. Por exemplo, é assim que declara o atributo nome para a entidade Pessoa:
+    <br>
+    <pre>
+        [Pessoa]
+        nome
+    </pre>
+    <br>
+    Qualquer número de atributos pode ser declarado como uma chave primária para sua entidade prefixando o atributo com um *. Da mesma forma, um atributo pode ser declarado como uma chave estrangeira prefixando o atributo com um +:
+    <pre>
+        [Pessoa]
+        *id
+        +endereco_id
+    </pre>
+    <h2 id="relationship">Relacionamento de Entidades</h2>
+    Os relacionamentos também podem ser declarados em qualquer lugar em um arquivo ER. Todo relacionamento inclui exatamente duas entidades (as duas entidades podem ser as mesmas, para auto-relacionamentos). Cada entidade em um relacionamento deve ter exatamente uma das quatro cardinalidades:
+    <table cellpadding="0" cellspacing="0" width="200px" style="margin-top: 16px;">
+        <tr>
+            <th>Cardinalidade</th>
+            <th>Sintaxe</th>
+        </tr>
+        <tr>
+            <td>0 ou 1</td>
+            <td>?</td>
+        </tr>
+        <tr>
+            <td>exatamente 1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>0 ou mais</td>
+            <td>*</td>
+        </tr>
+        <tr>
+            <td>1 ou mais</td>
+            <td>+</td>
+        </tr>
+    </table>
+    <br>
+    Assim, por exemplo, o seguinte define uma relação entre Pessoa e Endereço que diz "cada pessoa tem exatamente um endereço":
+    <pre>
+        Pessoa *--1 Endereço
+    </pre>
 </body>
-
 </html>
