@@ -38,7 +38,12 @@
                     <li><a href="#attributes">Atributos</a></li>
                     <li><a href="#relationship">Relacionamento de Entidades</a></li>
                 </ol>
-
+            </li>
+            <li><a href="#activity">Atividade - Modelo Entidade Relacionamento</a>
+                <ol>
+                    <li><a href="#situacao1">Situação 1 - Organização de CDs</a></li>
+                    <li><a href="#situacao2">Situação 2 - Transporte de mercadorias</a></li>
+                </ol>
             </li>
         </ol>
     </nav>
@@ -123,6 +128,21 @@
     <pre>
         Pessoa *--1 Endereço
     </pre>
+    <h1 id="activity">
+        Atividade - Modelo Entidade Relacionamento
+    </h1>
+    <p>
+        A seguir serão apresentadas duas situações, uma sobre a organização de CDs e a outra  sobre uma transportadora de mercadorias. Essas situações são parecidas com uma atividade da sua professora de banco de dados. Você deve montar o diagrama de entidade relacionamento dessas situações utilizando a nova linguagem que você aprendeu. Você pode consultar o material que explica a linguagem durante a execução do exercício.
+    </p>
+    <h2 id="situacao1">Situação 1 - Organização de CDs</h2>
+    <p>Uma aluna de computação deseja organizar seus CDs. A seguir estão listadas as características desses CDs e suas músicas: </p>
+    <ul>
+        <li>Um CD possui um título e diversas músicas;</li>
+        <li>Toda música possui um título e uma duração;</li>
+        <li>Uma música pode ser interpretada por um ou mais cantores;</li>
+    </ul>
+    <h2 id="situacao2">Situação 2 - Transporte de mercadorias</h2>
+    <p>Um cliente deseja enviar alguma mercadoria/produto para alguém através da transportadora. O processo na transportadora funciona da seguinte forma: a transportadora registra uma coleta de mercadoria no banco de dados. Os dados da coleta contém o remetente, que é a pessoa que envia a mercadoria, e o destinatário, que irá receber a mercadoria. Ambos são clientes. Remetente e destinatário tem nome, CPF/CNPJ, telefone, endereço (seja para cobrança do frete ou entrega da mercadoria), cidade e estado. Além dos dados do cliente, também são registrados na coleta, a mercadoria a ser coletada, seu valor, peso e tamanho (metros cúbicos), além do pagador do frete (que será o remetente ou destinatário).</p>
 </div>
 </body>
 </html>
