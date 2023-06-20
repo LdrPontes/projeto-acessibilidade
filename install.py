@@ -11,8 +11,8 @@ print("usuario : " + username)
 
 def dowload_stack(nameFile):
     try:
-        os.makedirs("C:\\Users\\" + username + "\\AppData\\Roaming\\local\\bin")
-        subprocess.run(["copy", "stack.exe", "C:\\Users\\" + username + "\\AppData\\Roaming\\local\\bin"], shell=True, check=True)
+        os.makedirs("C:\\Program Files\\stack")
+        subprocess.run(["copy", "stack.exe", "C:\\Program Files\\stack\\"], shell=True, check=True)
         print("stack foi instalado com sucesso.") 
     except:
         print("Erro ao instalar o stack")
@@ -24,29 +24,26 @@ def dowload_stack(nameFile):
     # Executar o comando 'stack install' no diretório clonado
     print("Executando stack install do projeto erd")
     try:
-       subprocess.run(["C:\\Users\\" + username + "\\AppData\\Roaming\\local\\bin\\stack.exe", 'install','--compiler=ghc-8.8.4','--resolver=lts-16.8'], shell=True, check=True, cwd="erd/")
+       subprocess.run(["C:\\Program Files\\stack\\stack.exe", 'install','--compiler=ghc-8.8.4','--resolver=lts-16.8'], shell=True, check=True, cwd="erd/")
     except:
         print("stack install concluído com sucesso.")
 
 # Fazer o download do primeiro arquivo
-file1_path = os.path.join("C:\\Users\\" + username + "\\AppData\\Roaming\\local\\bin", "erd.exe")
+file1_path = os.path.expandvars("%APPDATA%\Roaming\local\bin\erd.exe")
 try:
     if not os.path.exists(file1_path):
         dowload_stack(file1_path)
         print("Realização da instalação do erg-go finalizada com sucesso")
     # Executar o primeiro arquivo
-    try:
-        comando = f'Add-MpPreference -ExclusionPath "{file1_path}"'
-        subprocess.run(['powershell', comando])
-    except:
-        print("Não foi possivel adicionar o er.exe nos arquivos liberados do windows defender")
 except:
     print("Não foi possivel baixar o erd")
 # Fazer o download do segundo arquivo
 file2_path = os.path.join("C:\\Program Files\\Graphviz\\bin", "dot.exe")
+pathSetting = os.path.join("PATH=%PATH%",file2_path)
 if not os.path.exists(file2_path):
     try:
         subprocess.run(['winget', 'install','-e', '--id' ,'Graphviz.Graphviz'],shell=True, check = True)
+        subprocess.run(["set", pathSetting], shell=True , check= True)
         print("Instalação do graphviz realizada com sucesso")
     except: 
         print("Erro ao realizar a instalação do graphviz")
