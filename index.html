@@ -45,6 +45,7 @@
                     <li><a href="#situacao2">Situação 2 - Transporte de mercadorias</a></li>
                 </ol>
             </li>
+            <li><a href="#problemas">Possíveis erros e soluções</a></li>
         </ol>
     </nav>
 </div>
@@ -165,6 +166,25 @@
     </ul>
     <h2 id="situacao2">Situação 2 - Transporte de mercadorias</h2>
     <p>Um cliente deseja enviar alguma mercadoria/produto para alguém através da transportadora. O processo na transportadora funciona da seguinte forma: a transportadora registra uma coleta de mercadoria no banco de dados. Os dados da coleta contém o remetente, que é a pessoa que envia a mercadoria, e o destinatário, que irá receber a mercadoria. Ambos são clientes. Remetente e destinatário tem nome, CPF/CNPJ, telefone, endereço (seja para cobrança do frete ou entrega da mercadoria), cidade e estado. Além dos dados do cliente, também são registrados na coleta, a mercadoria a ser coletada, seu valor, peso e tamanho (metros cúbicos), além do pagador do frete (que será o remetente ou destinatário).</p>
+    <h1 id="problemas">Possíveis problemas e soluções</h1>
+    <h2>Erro na instalação do Graphviz</h2>
+    <p>
+        <ol>
+            <li>Verifique se o Graphviz foi instalado digitando no terminal "dot --version"</li>
+            <li>Caso não seja encontrado, instale manualmente a partir do link: https://www.graphviz.org/download/</li>
+            <li>Atualize o arquivo settings.json do VSCode com o caminho correto para a chave: "erd-preview.dotPath"</li>
+        </ol>
+    </p>
+    <h2>Erro na instalação do ERD</h2>
+    <p>
+        <ol>
+            <li>Verifique se o ERD foi instalado digitando no terminal "erd --version"</li>
+            <li>Caso não seja encontrado, faça o download do seguinte repositório para a pasta do instalador: https://github.com/BurntSushi/erd</li>
+            <li>Pelo terminal, acesse a pasta do instalador. Há um arquivo chamado stack.exe</li>
+            <li>Acesse a pasta do repositório e rode o comando: "caminho/para/o/stack.exe install --compile=ghc-8.8.4 --resolver=lts-16.8</li>
+            <li>Atualize o arquivo settings.json do VSCode com o caminho correto para a chave: "erd-preview.erdPath"</li>
+        </ol>
+    </p>
 </div>
 </body>
 </html>
