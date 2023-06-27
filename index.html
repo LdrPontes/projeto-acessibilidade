@@ -45,6 +45,7 @@
                     <li><a href="#situacao2">Situação 2 - Transporte de mercadorias</a></li>
                 </ol>
             </li>
+            <li><a href="#problemas">Possíveis erros e soluções</a></li>
         </ol>
     </nav>
 </div>
@@ -56,13 +57,35 @@
         <li>Execute o arquivo instalador.exe</li>
         <li>Aguarde a instalação. O Windows pode solicitar uma confirmação para a instalação.</li>
     </ol>
+    <section id="LEITOR">
+        <p>O NVDA (Non Visual Desktop Access), “Acesso Não-Visual ao Ambiente de Trabalho”, é um leitor de tela criado com intuito de facilitar o acesso de deficientes visuais a esta tecnologia.
+            O leitor de tela NVDA possibilita que estas pessoas realizem diversas atividades no computador de forma autônoma, como por exemplo: Navegar por páginas do computador;
+            ler e escrever textos; edição e criação de pastas; acessar comando no Windows para ações através de atalhos e realizar atividades mais complexas como formatação do computador.
+        </p>
+        <h3 id="CONFIG_NVDA">Configuração do NVDA</h3>
+        <p> Para realização da leitura de tela é necessario a troca da linguagem padrão para a voz "leticia" que consegue identificar pontuações dentro do VsCode.
+        </p>
+        <p>
+            Para adicionar a voz da Letícia, faça o download através do link <a href="https://f123.org/leticia/download/Windows/RHVoice-Brazilian-Portuguese-voice-Leticia-F123-4.6.6.nvda-addon">aqui.</a>
+            Após o download, instale. 
+        </p>
+        Para mais informaçoes sobre a voz da Letícia acesse<a href="https://f123.org/leticia/">aqui.</a>
+        <p>Para configurar a voz, vá em “divisa de notificação botão” no canto inferior direito da barra de tarefa do Windows, aperte no “NVDA botão”, siga até “preferências menu”, em seguida “configurações”.
+        </p>
+        <p>Na tela que será aberta "configurações do NVDA: Geral (configuração normal)”, em categorias vá em Fala 2 de 13, na seção voz (caixa de combinação) escolha “Leticia - F123”.
+        </p>
+        <p>Ainda na mesma seção de voz  em “Grau de pontuação/símbolos" selecione a opção “tudo”, para que o software possa ler todas pontuações e símbolos no código.
+        </p>
+        <p>Clique em “Aplicar” e “OK” no canto inferior direito do NVDA.
+        </p>
+    </section>
     <h1 id="instruction">Instruções de uso</h1>
     <ol>
         <li>No VSCode, criar um arquivo com a extensão .er</li>
         <li>Para abrir a visualização, pressione F1 para abrir a pesquisa do VSCode e busque por "ERD: Preview Current
             Window"
         </li>
-    </ol>
+    </ol> 
     <h1 id="model">Como modelar um diagrama ER</h1>
     <h2 id="entities">Entidades</h2>
     As entidades são declaradas dentro de colchetes []. Por exemplo, é assim que declara a entidade Pessoa sem
@@ -143,6 +166,25 @@
     </ul>
     <h2 id="situacao2">Situação 2 - Transporte de mercadorias</h2>
     <p>Um cliente deseja enviar alguma mercadoria/produto para alguém através da transportadora. O processo na transportadora funciona da seguinte forma: a transportadora registra uma coleta de mercadoria no banco de dados. Os dados da coleta contém o remetente, que é a pessoa que envia a mercadoria, e o destinatário, que irá receber a mercadoria. Ambos são clientes. Remetente e destinatário tem nome, CPF/CNPJ, telefone, endereço (seja para cobrança do frete ou entrega da mercadoria), cidade e estado. Além dos dados do cliente, também são registrados na coleta, a mercadoria a ser coletada, seu valor, peso e tamanho (metros cúbicos), além do pagador do frete (que será o remetente ou destinatário).</p>
+    <h1 id="problemas">Possíveis problemas e soluções</h1>
+    <h2>Erro na instalação do Graphviz</h2>
+    <p>
+        <ol>
+            <li>Verifique se o Graphviz foi instalado digitando no terminal "dot --version"</li>
+            <li>Caso não seja encontrado, instale manualmente a partir do link: https://www.graphviz.org/download/</li>
+            <li>Atualize o arquivo settings.json do VSCode com o caminho correto para a chave: "erd-preview.dotPath"</li>
+        </ol>
+    </p>
+    <h2>Erro na instalação do ERD</h2>
+    <p>
+        <ol>
+            <li>Verifique se o ERD foi instalado digitando no terminal "erd --version"</li>
+            <li>Caso não seja encontrado, faça o download do seguinte repositório para a pasta do instalador: https://github.com/BurntSushi/erd</li>
+            <li>Pelo terminal, acesse a pasta do instalador. Há um arquivo chamado stack.exe</li>
+            <li>Acesse a pasta do repositório e rode o comando: "caminho/para/o/stack.exe install --compile=ghc-8.8.4 --resolver=lts-16.8</li>
+            <li>Atualize o arquivo settings.json do VSCode com o caminho correto para a chave: "erd-preview.erdPath"</li>
+        </ol>
+    </p>
 </div>
 </body>
 </html>
