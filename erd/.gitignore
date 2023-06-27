@@ -1,9 +1,0 @@
-.*.swp
-*~
-dist
-bin
-tags
-.stack-work
-dist-newstyle
-examples/*.dot
-examples/*.pdf
