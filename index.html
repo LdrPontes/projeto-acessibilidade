@@ -169,31 +169,37 @@
     <p>Um cliente deseja enviar alguma mercadoria/produto para alguém através da transportadora. O processo na transportadora funciona da seguinte forma: a transportadora registra uma coleta de mercadoria no banco de dados. Os dados da coleta contém o remetente, que é a pessoa que envia a mercadoria, e o destinatário, que irá receber a mercadoria. Ambos são clientes. Remetente e destinatário tem nome, CPF/CNPJ, telefone, endereço (seja para cobrança do frete ou entrega da mercadoria), cidade e estado. Além dos dados do cliente, também são registrados na coleta, a mercadoria a ser coletada, seu valor, peso e tamanho (metros cúbicos), além do pagador do frete (que será o remetente ou destinatário).</p>
     <h1 id="problemas">Possíveis problemas e soluções</h1>
     <h2>Erro na instalação do Graphviz</h2>
-    <p>
-        <ol>
-            <li>Verifique se o Graphviz foi instalado digitando no terminal "dot --version"</li>
-            <li>Caso não seja encontrado, instale manualmente a partir do link: https://www.graphviz.org/download/</li>
-            <li>Atualize o arquivo settings.json do VSCode com o caminho correto para a chave: "erd-preview.dotPath"</li>
-        </ol>
-    </p>
+    <ol>
+        <li>Verifique se o Graphviz foi instalado digitando no terminal "dot --version"</li>
+        <li>Caso não seja encontrado, instale manualmente a partir do link: https://www.graphviz.org/download/</li>
+        <li>Atualize o arquivo settings.json do VSCode com o caminho correto para a chave: "erd-preview.dotPath"</li>
+    </ol>
     <h2>Erro na instalação do ERD</h2>
-    <p>
-        <ol>
-            <li>Verifique se o ERD foi instalado digitando no terminal "erd --version"</li>
-            <li>Caso não seja encontrado, faça o download do seguinte repositório para a pasta do instalador: https://github.com/BurntSushi/erd</li>
-            <li>Pelo terminal, acesse a pasta do instalador. Há um arquivo chamado stack.exe</li>
-            <li>Acesse a pasta do repositório e rode o comando: "caminho/para/o/stack.exe install --compile=ghc-8.8.4 --resolver=lts-16.8</li>
-            <li>Atualize o arquivo settings.json do VSCode com o caminho correto para a chave: "erd-preview.erdPath"</li>
-        </ol>
-    </p>
+    <ol>
+        <li>Verifique se o ERD foi instalado digitando no terminal "erd --version"</li>
+        <li>Caso não seja encontrado, faça o download do seguinte repositório para a pasta do instalador: https://github.com/BurntSushi/erd</li>
+        <li>Pelo terminal, acesse a pasta do instalador. Há um arquivo chamado stack.exe</li>
+        <li>Acesse a pasta do repositório e rode o comando: "caminho/para/o/stack.exe install --compile=ghc-8.8.4 --resolver=lts-16.8</li>
+        <li>Atualize o arquivo settings.json do VSCode com o caminho correto para a chave: "erd-preview.erdPath"</li>
+    </ol>
     <h1 id="referencias">Referências</h1>
     <p>Em caso de algum repositório abaixo estar descontinuado, há uma cópia dos projetos na base desse material.</p>
     <a href="https://github.com/BurntSushi/erd" target="_blank">https://github.com/BurntSushi/erd</a>
     <br>
     <a href="https://github.com/kaishuu0123/vscode-erd" target="_blank">https://github.com/kaishuu0123/vscode-erd</a>
     <br>
+    <h1>Autores</h1>
+    <ul>
+        <li>François Bruno Rueckird</li>
+        <li>Lara Morgado da Silva Santos</li>
+        <li>Leandro Pontes Berleze</li>
+        <li>Lucas Matheus dos Santos</li>
+        <li>Mayara Dal Vesco Hoger</li>
+    </ul>
+    <p>Coordenador: Leonelo Dell Anhol Almeida</p>
+
     <br>
-    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png"></a><br>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 </div>
 </body>
 </html>
